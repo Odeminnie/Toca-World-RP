@@ -1,0 +1,1214 @@
+/* =======================================================
+   STYLING FOR TOCA WORLD ROLEPLAY WEBSITE
+   Theme: Pastel Cute / Minecraft x Toca World
+   *** Version: Animated & Enhanced CTA Button ***
+========================================================== */
+
+/* --- 0. ROOT VARIABLES & GLOBAL STYLES --- */
+:root {
+    /* สีพาสเทลน่ารัก */
+    --pastel-pink: #FFDDE2;
+    --pastel-mint: #D4F4E7;
+    --sky-blue: #C1E1FF;
+    --lavender: #E0C1FF;
+    --primary-color: #FF69B4; /* สีชมพูเข้มสำหรับ CTA / ไฮไลท์ */
+    --text-color: #333333;
+    --bg-color-light: #F8F8F8;
+    --font-family: 'Arial', sans-serif;
+    
+    /* NEW: Shadow Color */
+    --shadow-light: rgba(255, 105, 180, 0.4); 
+}
+
+/* NEW: Global Header Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: var(--bg-color-light);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    font-weight: 700;
+    /* NEW: Add slight animation to headers in main content */
+    animation: float 5s ease-in-out infinite; 
+}
+
+/* --- 1. AGE GATE STYLES (Overlay & Transition) --- */
+
+#age-gate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* CSS Transition สำหรับการหายไปของ Age Gate */
+    transition: opacity 0.7s ease-out, visibility 0.7s; 
+}
+
+.age-gate-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.age-gate-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    /* NEW: Enhanced shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--shadow-light); 
+    text-align: center;
+    max-width: 90%;
+    width: 450px;
+    border: 5px solid var(--primary-color);
+    /* NEW: Add pop-in animation */
+    animation: popIn 0.5s ease-out; 
+}
+
+/* NEW: Pop-In Animation for Age Gate Box */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.age-gate-logo {
+    width: 120px; 
+    margin-bottom: 15px;
+}
+
+/* NEW: Pulse Animation for Disclaimer Text */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--pastel-mint); }
+    50% { box-shadow: 0 0 15px var(--primary-color); }
+    100% { box-shadow: 0 0 5px var(--pastel-mint); }
+}
+
+.disclaimer-text {
+    background-color: var(--pastel-mint);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 6px solid var(--primary-color);
+    margin: 20px 0;
+    /* NEW: Apply pulse animation */
+    animation: pulseGlow 3s infinite alternate; 
+}
+
+.age-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+.age-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s; /* NEW: Add filter transition */
+    box-shadow: 0 5px 0 0 #A83A64; /* เงาแบบปุ่มบล็อก */
+    background-color: var(--pastel-pink);
+    color: var(--text-color);
+}
+
+.age-btn:hover {
+    filter: brightness(1.1); /* NEW: Brighter on hover */
+    transform: translateY(-2px); /* NEW: Slight lift */
+    box-shadow: 0 7px 0 0 #A83A64; 
+}
+
+.age-btn:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+@media (min-width: 768px) {
+    .age-buttons {
+        flex-direction: row; 
+        justify-content: center;
+    }
+}
+
+/* --- 2. MAIN CONTENT & HERO SECTION --- */
+
+.content-hidden {
+    display: none;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Placeholder: Desktop Background */
+    background-image: url('pc.png'); 
+    background-size: cover;
+    background-position: center;
+    /* NEW: Subtle background movement */
+    animation: backgroundPan 20s linear infinite alternate;
+}
+
+@keyframes backgroundPan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Placeholder: Mobile Background (ลายแพทเทิร์น) */
+@media (max-width: 767px) {
+    .hero-section {
+        background-image: url('m.png'); 
+        background-size: 550px;
+        background-repeat: repeat;
+        /* Remove backgroundPan for tiled mobile background */
+        animation: none; 
+    }
+}
+
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 50px;
+    border-radius: 30px;
+    /* NEW: Enhanced shadow and border */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 15px var(--sky-blue); 
+    border: 3px dashed var(--pastel-mint);
+    /* NEW: Add slight hover effect for fun */
+    transition: transform 0.3s;
+}
+.hero-content:hover {
+    transform: scale(1.02);
+}
+
+
+/* CSS Animation: แอนิเมชันโลโก้ */
+@keyframes zoomInOut {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.05); }
+}
+
+.main-logo-animated {
+    width: 250px; 
+    max-width: 90%;
+    animation: zoomInOut 4s infinite alternate ease-in-out; 
+}
+
+/* NEW: CTA Button Pulse Animation */
+@keyframes ctaPulse {
+    0% { transform: scale(1); box-shadow: 0 7px 0 0 #A83A64, 0 0 0 0 rgba(255, 105, 180, 0.7); }
+    50% { transform: scale(1.05); box-shadow: 0 7px 0 0 #A83A64, 0 0 20px 5px rgba(255, 105, 180, 0.9); }
+    100% { transform: scale(1); box-shadow: 0 7px 0 0 #A83A64, 0 0 0 0 rgba(255, 105, 180, 0.7); }
+}
+
+.cta-button {
+    display: block; 
+    background-color: var(--primary-color); 
+    color: white;
+    padding: 18px 35px;
+    margin-top: 30px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s; /* NEW: Add background-color transition */
+    box-shadow: 0 7px 0 0 #A83A64; 
+    /* NEW: Apply pulse animation */
+    animation: ctaPulse 2s infinite ease-in-out; 
+}
+/* NEW: Hover effect for CTA */
+.cta-button:hover {
+    background-color: #ff85c1; /* Lighter pink */
+    transform: translateY(-2px) scale(1.02); /* Scale up slightly on hover */
+    box-shadow: 0 9px 0 0 #A83A64, 0 0 25px 8px rgba(255, 105, 180, 0.9); /* Stronger glow on hover */
+    animation: none; /* Stop pulse animation on hover */
+}
+
+.cta-button:active {
+    transform: translateY(5px);
+    box-shadow: none;
+    animation: none; /* Stop pulse animation on active */
+}
+
+/* --- 3. NAVIGATION BAR & HAMBURGER STYLES --- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-logo a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    font-weight: bold;
+    /* NEW: Subtle hover effect on logo */
+    transition: color 0.3s, transform 0.3s;
+}
+.nav-logo a:hover {
+    color: #FFC0CB; /* Light pink */
+    transform: scale(1.1);
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s; /* Enhanced transition */
+}
+
+.navbar a:hover {
+    background-color: var(--pastel-mint);
+    color: var(--primary-color); /* Highlight text on hover */
+}
+
+.nav-cta-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s; 
+}
+.nav-cta-btn:hover {
+    background-color: #ff85c1 !important;
+    transform: translateY(-2px);
+}
+
+
+/* สไตล์ของปุ่ม Hamburger (3 ขีด) */
+.hamburger {
+     /* แสดงบนทุกขนาดหน้าจอ */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    
+    width: 45px;
+    height: 30px;
+    left: -800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 600;
+}
+/* NEW: Ensure hamburger is visible only on mobile */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+    .nav-menu {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        width: auto;
+        backdrop-filter: none;
+    }
+    .nav-menu li {
+        width: auto;
+        margin: 0;
+        border-bottom: none;
+    }
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 1em;
+    }
+}
+@media (max-width: 767px) {
+    .nav-menu {
+        background-color: rgba(255, 255, 255, 0.95); /* Mobile menu background */
+    }
+    .hamburger {
+        left: auto;
+    }
+}
+
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* สไตล์เมนูรายการที่ถูกซ่อน (The Mobile Menu) */
+.nav-menu {
+    position: fixed;
+    top: 55px; /* เลื่อนลงมาจาก Navbar เล็กน้อย */
+    left: -100%; /* ซ่อนเมนูไว้ทางซ้าย */
+    width: 100%;
+    height: 100vh;
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.5s ease-in-out;
+    z-index: 499;
+}
+
+/* คลาสที่จะถูกเพิ่มด้วย JavaScript เมื่อเมนูเปิด */
+.nav-menu.active {
+    left: 0;
+}
+
+.nav-menu li {
+    width: 80%;
+    text-align: center;
+    margin: 10px 0;
+    border-bottom: 1px solid var(--pastel-pink);
+}
+
+.nav-link {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: var(--pastel-mint);
+    border-radius: 8px;
+    color: var(--primary-color);
+}
+
+/* สไตล์สำหรับปุ่ม CTA ในเมนู */
+.nav-cta-btn {
+    /* ใช้สไตล์เดียวกับ desktop แต่มีการปรับ padding ให้เหมาะสม */
+    padding: 15px 20px !important;
+    box-shadow: 0 3px 0 0 #A83A64;
+}
+.nav-cta-btn:hover {
+    transform: none; /* ยกเลิกการยกตัวของปุ่ม CTA ในเมนูโมบายเมื่อเมนูเปิด */
+}
+
+/* Hamburger X animation (เมื่อเมนูเปิด) */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- 4. CONTENT SECTION STYLES --- */
+
+.content-section {
+    padding: 80px 5%;
+    min-height: 40vh;
+}
+
+/* Background Colors for Sections */
+.about-section {
+    background-color: var(--pastel-pink);
+}
+
+.lore-section {
+    background-color: var(--lavender);
+}
+
+.guide-section {
+    background-color: var(--bg-color-light);
+}
+
+.rules-section {
+    background-color: var(--pastel-mint);
+}
+
+.contact-section {
+    background-color: var(--sky-blue);
+}
+
+.support-section {
+    background-color: var(--bg-color-light);
+}
+
+/* --- Lore Section Specific Styles --- */
+.lore-highlight {
+    display: block;
+    background-color: var(--pastel-pink);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    border: 2px dashed var(--primary-color);
+    /* NEW: Bounce animation for highlight */
+    animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+    0%, 100% { transform: scale(1.0); }
+    50% { transform: scale(1.03); }
+}
+
+
+/* --- Rules Section Specific Styles --- */
+.rule-intro {
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.rule-list {
+    list-style-type: '💖 ';
+    padding-left: 20px;
+}
+
+.rule-list li {
+    margin-bottom: 10px;
+    /* NEW: Add slight glow on hover */
+    transition: background-color 0.2s;
+}
+.rule-list li:hover {
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 5px;
+}
+
+
+.note-box {
+    background-color: var(--pastel-pink);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #900030; 
+    text-align: center;
+    /* NEW: Enhanced border and shadow for emphasis */
+    border: 3px solid #900030;
+    box-shadow: 0 0 10px #900030;
+    animation: flashBorder 1.5s infinite alternate; 
+}
+@keyframes flashBorder {
+    0% { border-color: #900030; box-shadow: 0 0 10px #900030; }
+    100% { border-color: var(--primary-color); box-shadow: 0 0 20px var(--primary-color); }
+}
+
+/* --- Guide Section Specific Styles --- */
+.ip-box {
+    background-color: var(--sky-blue);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+    /* NEW: Pulse for IP box */
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* --- Contact & Support Specific Styles --- */
+.channel-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: opacity 0.3s, transform 0.3s; /* Enhanced transition */
+    margin: 10px 10px 10px 0;
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+.channel-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.discord-btn {
+    background-color: #7289DA; /* Discord Blue */
+}
+
+.store-btn {
+    background-color: var(--primary-color);
+    box-shadow: 0 3px 0 0 #A83A64;
+}
+
+.support-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.support-method {
+    flex: 1 1 300px; 
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* NEW: Floating effect on support methods */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.support-method:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.support-note {
+    background-color: var(--pastel-mint);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.donate-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.small-text {
+    font-size: 0.9em;
+/* =======================================================
+   STYLING FOR TOCA WORLD ROLEPLAY WEBSITE
+   Theme: Pastel Cute / Minecraft x Toca World
+   *** Version: Animated & Enhanced CTA Button ***
+========================================================== */
+
+/* --- 0. ROOT VARIABLES & GLOBAL STYLES --- */
+:root {
+    /* สีพาสเทลน่ารัก */
+    --pastel-pink: #FFDDE2;
+    --pastel-mint: #D4F4E7;
+    --sky-blue: #C1E1FF;
+    --lavender: #E0C1FF;
+    --primary-color: #FF69B4; /* สีชมพูเข้มสำหรับ CTA / ไฮไลท์ */
+    --text-color: #333333;
+    --bg-color-light: #F8F8F8;
+    --font-family: 'Arial', sans-serif;
+    
+    /* NEW: Shadow Color */
+    --shadow-light: rgba(255, 105, 180, 0.4); 
+}
+
+/* NEW: Global Header Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: var(--bg-color-light);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    font-weight: 700;
+    /* NEW: Add slight animation to headers in main content */
+    animation: float 5s ease-in-out infinite; 
+}
+
+/* --- 1. AGE GATE STYLES (Overlay & Transition) --- */
+
+#age-gate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* CSS Transition สำหรับการหายไปของ Age Gate */
+    transition: opacity 0.7s ease-out, visibility 0.7s; 
+}
+
+.age-gate-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.age-gate-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    /* NEW: Enhanced shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--shadow-light); 
+    text-align: center;
+    max-width: 90%;
+    width: 450px;
+    border: 5px solid var(--primary-color);
+    /* NEW: Add pop-in animation */
+    animation: popIn 0.5s ease-out; 
+}
+
+/* NEW: Pop-In Animation for Age Gate Box */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.age-gate-logo {
+    width: 120px; 
+    margin-bottom: 15px;
+}
+
+/* NEW: Pulse Animation for Disclaimer Text */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--pastel-mint); }
+    50% { box-shadow: 0 0 15px var(--primary-color); }
+    100% { box-shadow: 0 0 5px var(--pastel-mint); }
+}
+
+.disclaimer-text {
+    background-color: var(--pastel-mint);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 6px solid var(--primary-color);
+    margin: 20px 0;
+    /* NEW: Apply pulse animation */
+    animation: pulseGlow 3s infinite alternate; 
+}
+
+.age-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+.age-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s; /* NEW: Add filter transition */
+    box-shadow: 0 5px 0 0 #A83A64; /* เงาแบบปุ่มบล็อก */
+    background-color: var(--pastel-pink);
+    color: var(--text-color);
+}
+
+.age-btn:hover {
+    filter: brightness(1.1); /* NEW: Brighter on hover */
+    transform: translateY(-2px); /* NEW: Slight lift */
+    box-shadow: 0 7px 0 0 #A83A64; 
+}
+
+.age-btn:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+@media (min-width: 768px) {
+    .age-buttons {
+        flex-direction: row; 
+        justify-content: center;
+    }
+}
+
+/* --- 2. MAIN CONTENT & HERO SECTION --- */
+
+.content-hidden {
+    display: none;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Placeholder: Desktop Background */
+    background-image: url('pc.png'); 
+    background-size: cover;
+    background-position: center;
+    /* NEW: Subtle background movement */
+    animation: backgroundPan 20s linear infinite alternate;
+}
+
+@keyframes backgroundPan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Placeholder: Mobile Background (ลายแพทเทิร์น) */
+@media (max-width: 767px) {
+    .hero-section {
+        background-image: url('m.png'); 
+        background-size: 550px;
+        background-repeat: repeat;
+        /* Remove backgroundPan for tiled mobile background */
+        animation: none; 
+    }
+}
+
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 50px;
+    border-radius: 30px;
+    /* NEW: Enhanced shadow and border */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 15px var(--sky-blue); 
+    border: 3px dashed var(--pastel-mint);
+    /* NEW: Add slight hover effect for fun */
+    transition: transform 0.3s;
+}
+.hero-content:hover {
+    transform: scale(1.02);
+}
+
+
+/* CSS Animation: แอนิเมชันโลโก้ */
+@keyframes zoomInOut {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.05); }
+}
+
+.main-logo-animated {
+    width: 250px; 
+    max-width: 90%;
+    animation: zoomInOut 4s infinite alternate ease-in-out; 
+}
+
+/* NEW: CTA Button Pulse Animation */
+@keyframes ctaPulse {
+    0% { transform: scale(1); box-shadow: 0 7px 0 0 #A83A64, 0 0 0 0 rgba(255, 105, 180, 0.7); }
+    50% { transform: scale(1.05); box-shadow: 0 7px 0 0 #A83A64, 0 0 20px 5px rgba(255, 105, 180, 0.9); }
+    100% { transform: scale(1); box-shadow: 0 7px 0 0 #A83A64, 0 0 0 0 rgba(255, 105, 180, 0.7); }
+}
+
+.cta-button {
+    display: block; 
+    background-color: var(--primary-color); 
+    color: white;
+    padding: 18px 35px;
+    margin-top: 30px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s; /* NEW: Add background-color transition */
+    box-shadow: 0 7px 0 0 #A83A64; 
+    /* NEW: Apply pulse animation */
+    animation: ctaPulse 2s infinite ease-in-out; 
+}
+/* NEW: Hover effect for CTA */
+.cta-button:hover {
+    background-color: #ff85c1; /* Lighter pink */
+    transform: translateY(-2px) scale(1.02); /* Scale up slightly on hover */
+    box-shadow: 0 9px 0 0 #A83A64, 0 0 25px 8px rgba(255, 105, 180, 0.9); /* Stronger glow on hover */
+    animation: none; /* Stop pulse animation on hover */
+}
+
+.cta-button:active {
+    transform: translateY(5px);
+    box-shadow: none;
+    animation: none; /* Stop pulse animation on active */
+}
+
+/* --- 3. NAVIGATION BAR & HAMBURGER STYLES --- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-logo a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    font-weight: bold;
+    /* NEW: Subtle hover effect on logo */
+    transition: color 0.3s, transform 0.3s;
+}
+.nav-logo a:hover {
+    color: #FFC0CB; /* Light pink */
+    transform: scale(1.1);
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s; /* Enhanced transition */
+}
+
+.navbar a:hover {
+    background-color: var(--pastel-mint);
+    color: var(--primary-color); /* Highlight text on hover */
+}
+
+.nav-cta-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s; 
+}
+.nav-cta-btn:hover {
+    background-color: #ff85c1 !important;
+    transform: translateY(-2px);
+}
+
+
+/* สไตล์ของปุ่ม Hamburger (3 ขีด) */
+.hamburger {
+     /* แสดงบนทุกขนาดหน้าจอ */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    
+    width: 45px;
+    height: 30px;
+    left: -800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 600;
+}
+/* NEW: Ensure hamburger is visible only on mobile */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+    .nav-menu {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        width: auto;
+        backdrop-filter: none;
+    }
+    .nav-menu li {
+        width: auto;
+        margin: 0;
+        border-bottom: none;
+    }
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 1em;
+    }
+}
+@media (max-width: 767px) {
+    .nav-menu {
+        background-color: rgba(255, 255, 255, 0.95); /* Mobile menu background */
+    }
+    .hamburger {
+        left: auto;
+    }
+}
+
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* สไตล์เมนูรายการที่ถูกซ่อน (The Mobile Menu) */
+.nav-menu {
+    position: fixed;
+    top: 55px; /* เลื่อนลงมาจาก Navbar เล็กน้อย */
+    left: -100%; /* ซ่อนเมนูไว้ทางซ้าย */
+    width: 100%;
+    height: 100vh;
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.5s ease-in-out;
+    z-index: 499;
+}
+
+/* คลาสที่จะถูกเพิ่มด้วย JavaScript เมื่อเมนูเปิด */
+.nav-menu.active {
+    left: 0;
+}
+
+.nav-menu li {
+    width: 80%;
+    text-align: center;
+    margin: 10px 0;
+    border-bottom: 1px solid var(--pastel-pink);
+}
+
+.nav-link {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: var(--pastel-mint);
+    border-radius: 8px;
+    color: var(--primary-color);
+}
+
+/* สไตล์สำหรับปุ่ม CTA ในเมนู */
+.nav-cta-btn {
+    /* ใช้สไตล์เดียวกับ desktop แต่มีการปรับ padding ให้เหมาะสม */
+    padding: 15px 20px !important;
+    box-shadow: 0 3px 0 0 #A83A64;
+}
+.nav-cta-btn:hover {
+    transform: none; /* ยกเลิกการยกตัวของปุ่ม CTA ในเมนูโมบายเมื่อเมนูเปิด */
+}
+
+/* Hamburger X animation (เมื่อเมนูเปิด) */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- 4. CONTENT SECTION STYLES --- */
+
+.content-section {
+    padding: 80px 5%;
+    min-height: 40vh;
+}
+
+/* Background Colors for Sections */
+.about-section {
+    background-color: var(--pastel-pink);
+}
+
+.lore-section {
+    background-color: var(--lavender);
+}
+
+.guide-section {
+    background-color: var(--bg-color-light);
+}
+
+.rules-section {
+    background-color: var(--pastel-mint);
+}
+
+.contact-section {
+    background-color: var(--sky-blue);
+}
+
+.support-section {
+    background-color: var(--bg-color-light);
+}
+
+/* --- Lore Section Specific Styles --- */
+.lore-highlight {
+    display: block;
+    background-color: var(--pastel-pink);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    border: 2px dashed var(--primary-color);
+    /* NEW: Bounce animation for highlight */
+    animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+    0%, 100% { transform: scale(1.0); }
+    50% { transform: scale(1.03); }
+}
+
+
+/* --- Rules Section Specific Styles --- */
+.rule-intro {
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.rule-list {
+    list-style-type: '💖 ';
+    padding-left: 20px;
+}
+
+.rule-list li {
+    margin-bottom: 10px;
+    /* NEW: Add slight glow on hover */
+    transition: background-color 0.2s;
+}
+.rule-list li:hover {
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 5px;
+}
+
+
+.note-box {
+    background-color: var(--pastel-pink);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #900030; 
+    text-align: center;
+    /* NEW: Enhanced border and shadow for emphasis */
+    border: 3px solid #900030;
+    box-shadow: 0 0 10px #900030;
+    animation: flashBorder 1.5s infinite alternate; 
+}
+@keyframes flashBorder {
+    0% { border-color: #900030; box-shadow: 0 0 10px #900030; }
+    100% { border-color: var(--primary-color); box-shadow: 0 0 20px var(--primary-color); }
+}
+
+/* --- Guide Section Specific Styles --- */
+.ip-box {
+    background-color: var(--sky-blue);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+    /* NEW: Pulse for IP box */
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* --- Contact & Support Specific Styles --- */
+.channel-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: opacity 0.3s, transform 0.3s; /* Enhanced transition */
+    margin: 10px 10px 10px 0;
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+.channel-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.discord-btn {
+    background-color: #7289DA; /* Discord Blue */
+}
+
+.store-btn {
+    background-color: var(--primary-color);
+    box-shadow: 0 3px 0 0 #A83A64;
+}
+
+.support-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.support-method {
+    flex: 1 1 300px; 
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* NEW: Floating effect on support methods */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.support-method:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.support-note {
+    background-color: var(--pastel-mint);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.donate-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.small-text {
+    font-size: 0.9em;
